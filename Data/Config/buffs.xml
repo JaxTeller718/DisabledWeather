@@ -364,10 +364,7 @@
 <buff id="shockedBuff3" type="armordown" requires="MetabolizeShock" duration="1" stack="reset" onexpired="shockedBuff2" actions="attach(ParticleEffects/p_electric_shock, @impact)">
 <modify id="1" stat="speedmodifier" setValue="0.3" type="armordown"/>
 </buff>
-						<!-- Disabled stupid weather -->
-						<buff id="StopTempEffects" stack="discard" duration="0" buffif="coretemp greater 0" debuffif="coretemp less -100" type="coretemp">
-							<modify id="0" stat="coretemp" setValue="70"/>
-						</buff>
+
 						<buff id="medicalsplint" overrides="brokenLeg,sprainedLeg" type="speedmodifier" overrideicon="true" icon="ui_game_symbol_splint" name_key="splintedLeg" description_key="splintedLegDesc" tooltip_key="splintedLegTooltip">
 							<modify id="0" stat="speedmodifier" mulValue="1.2"/>
 							<modify id="1" buff="brokenLeg" tickrate="5"/>
@@ -497,7 +494,7 @@
 	</buff>
 	<!--  Weed by JaxTeller718 -->
 	<buff id="lucilleimpact" hitmask="body;head" duration="1" castsound="lucille_impact" />
-<buff id="biteMark" duration="600t" type="sickness" actions="debuff(fullBuff);debuff(firstAid);debuff(firstAidLarge)" onexpired="infection"
+<buff id="biteMark" duration="600t" type="sickness"  onexpired="infection"
 	icon="biteMarkIcon" name_key="biteMark" description_key="biteMarkDesc" tooltip_key="biteMarkTooltip" cures="firstAidBandage,firstAidKit,disinfectantBandage">
 </buff>
 	<buff id="shockTrap" duration="4" name_key="stunned" type="speedmodifier" actions="increment(@wellness, -0.5, 0, 0, 1);attach(ParticleEffects/p_electric_shock, @impact)" description_key="stunnedDesc" tooltip_key="stunnedTooltip" icon="ui_game_symbol_stunned">
@@ -515,4 +512,8 @@
 	 	<buff id="chestTrap" duration="0.5" icon="ui_game_symbol_stunned">
 		<modify id="0" stat="health" amount="-100" rate="0.4"/>
 	</buff>	
+						<!-- Disabled stupid weather -->
+						<buff id="StopTempEffects" stack="discard" duration="0" buffif="coretemp greater 0" debuffif="coretemp less -100" type="coretemp">
+							<modify id="0" stat="coretemp" setValue="70"/>
+						</buff>
 		</buffs>
