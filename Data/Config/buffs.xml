@@ -486,11 +486,13 @@
 	<buff id="fishingWater" duration="0" name_key="fishingWater" description_key="fishingWaterDesc" icon="ui_game_symbol_fishing" />
 	<!-- FISHING -->
 	<!--  Weed by JaxTeller718 -->
-	<buff id="gettingHighBuff" duration="60" stack="extend" type="staminaup" icon="ui_game_symbol_run" name_key="gettingHighBuffName" description_key="gettingHighBuffDesc" tooltip_key="gettingHighBuffTooltip" causes="Joint">
+	<buff id="gettingHighBuff" duration="60" stack="extend" type="staminaup" icon="ui_game_symbol_run" name_key="gettingHighBuffName" description_key="gettingHighBuffDesc" tooltip_key="gettingHighBuffTooltip" onexpired="baked" causes="Joint">
 		<modify id="0" stat="stamina" amount="10" rate="1" />
+	<modify id="0" stat="speedmodifier" mulValue="0.5"/>
 	</buff>
-	<buff id="baked" duration="1800" stack="extend" actions="debuff(hangover)" type="staminaup" icon="ui_game_symbol_beer" name_key="Baked" description_key="Man you are HUNGRY! Hey what are you doing and where are you going!" tooltip_key="You have no idea what you are doing!" causes="baked">
+	<buff id="baked" duration="400" stack="extend" actions="debuff(hangover)" type="staminaup" icon="ui_game_symbol_beer" name_key="Baked" description_key="Man you are HUNGRY! Hey what are you doing and where are you going!" tooltip_key="You have no idea what you are doing!" causes="baked">
 		<modify id="0" stat="stamina" amount="-3" rate="2" />
+		<modify id="1" stat="food" amount="-1" rate="140"/>
 	</buff>
 	<!--  Weed by JaxTeller718 -->
 	<buff id="lucilleimpact" hitmask="body;head" duration="1" castsound="lucille_impact" />
