@@ -1,7 +1,7 @@
 <windows>
 	<window name="SMX">
 		<texture name="SMX" depth="0" size="250,33" texture="@file:Mods\SMX\Textures\Misc\smxhudlogo.png" material="Materials/Transparent Colored" pos="-320,-2" />
-		<label name="SMXServerInfo1" depth="0" size="250,27" text="" font_size="20" effect="outline" color="[green]" justify="center" pos="-610,-8" overflow="resizeheight" />
+		<label name="SMXServerInfo1" depth="0" size="250,27" text="v1.09" font_size="27" effect="outline" color="[white]" justify="center" pos="-500,-8" overflow="resizeheight" />
 	</window>
 	<!-- S420 Start -->
 	<window name="S420HUDLeftStatBars">
@@ -95,7 +95,7 @@
 		<sprite depth="5" name="Icon" sprite="ui_game_symbol_map_player_arrow" size="16,16" pos="192,-37" color="[black]" foregroundlayer="true"/>
 		<sprite depth="6" name="Icon" sprite="ui_game_symbol_map_player_arrow" size="12,12" pos="194,-39" color="[white]" foregroundlayer="true"/>
 		<!--rect width="338" height="40" pos="32,-44" ><sprite depth="0" name="border" color="0,0,0,100" height="43" type="sliced" /><sprite depth="1" pos="3,-3"  name="background" height="37" width="332" color="64,64,64,100" type="sliced" /></rect-->
-		<label depth="2" name="TextContent" pos="128,-66" font_size="28" color="[white]" justify="center" pivot="center" text="{daytitle}: {day|always}  {timetitle}: {time|always}" height="30" effect="outline" upper_case="true" />
+		<label depth="2" name="TextContent" pos="148,-66" font_size="28" color="[white]" justify="center" pivot="center" text="{daytitle}: {day|always}  {timetitle}: {time|always}" height="30" effect="outline" upper_case="true" />
 <!-- 		<sprite depth="2" name="Icon" sprite="ui_game_symbol_temperature" size="22,22" pos="201,-55" color="[white]" />
             <label depth="2" name="TextContent" pos="249,-66" font_size="28" color="[white]" justify="center" pivot="center" text="{maptemperature}[-]" height="30" controller="MapStats" effect="outline"/> -->
  		<sprite depth="2" name="Icon" sprite="ui_game_symbol_climb" size="22,22" pos="261,-55" color="[white]" />
