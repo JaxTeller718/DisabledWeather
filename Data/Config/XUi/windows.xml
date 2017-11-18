@@ -1,7 +1,7 @@
 <windows>
 	<window name="SMX">
 		<texture name="SMX" depth="0" size="250,33" texture="@file:Mods\SMX\Textures\Misc\smxhudlogo.png" material="Materials/Transparent Colored" pos="-320,-2" />
-		<label name="SMXServerInfo1" depth="0" size="250,27" text="v1.09" font_size="27" effect="outline" color="[white]" justify="center" pos="-500,-8" overflow="resizeheight" />
+		<label name="SMXServerInfo1" depth="0" size="250,27" text="v2.0" font_size="27" effect="outline" color="[white]" justify="center" pos="-500,-8" overflow="resizeheight" />
 	</window>
 	<!-- S420 Start -->
 	<window name="S420HUDLeftStatBars">
@@ -586,13 +586,13 @@
 			</grid>
 		</rect>
 	</window>
-	<window name="windowToolswoodTable2" width="228" height="121" panel="Right" cursor_area="true" >
+	<window name="windowToolsfoodPrepTable" width="228" height="121" panel="Right" cursor_area="true" >
 		<panel style="header.panel">
 			<sprite style="header.icon" sprite="ui_game_symbol_wrench"/>
 			<label style="header.name" text="TOOLS" text_key="xuiTools" />
 		</panel>
 		<rect name="content" depth="0" pos="0,-46" height="75" disablefallthrough="true" on_press="true">
-			<grid name="inventory" rows="1" cols="2" pos="3,-3" cell_width="75" cell_height="75" controller="WorkstationToolGrid" repeat_content="true" allow_sort_order="false"	required_tools="butcherKnife,clubWood" required_tools_only="true">
+			<grid name="inventory" rows="1" cols="2" pos="3,-3" cell_width="75" cell_height="75" controller="WorkstationToolGrid" repeat_content="true" allow_sort_order="false"	required_tools="butcherKnife,tenderizer" required_tools_only="true">
 				<required_item_stack name="0"/>
 			</grid>
 			<!-- <grid name="slot_preview" depth="1" rows="1" cols="3" pos="3,-3" cell_width="75" cell_height="75" controller="SlotPreview"><rect><sprite name="slot" depth="2" width="70" height="50" foregroundlayer="true" color="[white_quarter_alpha]" sprite="anvil" atlas="ItemIconAtlasGreyscale" pos="35,-30" pivot="center"/></rect><rect><sprite name="slot" depth="2" width="70" height="50" foregroundlayer="true" color="[white_quarter_alpha]" sprite="calipers" atlas="ItemIconAtlasGreyscale" pos="35,-30" pivot="center"/></rect><rect><sprite name="slot" depth="2" width="70" height="50" foregroundlayer="true" color="[white_quarter_alpha]" sprite="toolAndDieSet" atlas="ItemIconAtlasGreyscale" pos="35,-30" pivot="center"/></rect></grid> -->

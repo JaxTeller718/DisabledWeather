@@ -452,9 +452,11 @@
 							<modify id="0" stat="speedmodifier" modifyMaxValue="1.3"/>
 							<modify id="1" stat="speedmodifier" modifyValue="1.3"/>
 						</buff>
-						<buff id="maniacBoost" duration="10" name_key="maniacBoost" stack="reset" description_key="maniacBoostDesc" icon="ui_game_symbol_run">
+						<buff id="maniacBoost" duration="15" name_key="Heisenberg Effect" stack="reset" description_key="You are the one who KNOCKS" icon="ui_game_symbol_run">
 							<modify id="0" stat="speedmodifier" modifyMaxValue="2.01"/>
 							<modify id="1" stat="speedmodifier" modifyValue="1.3"/>
+							<modify id="0" stat="stamina" amount="5" rate="1"/>
+			<modify id="0" stat="water" amount="-2" rate="30"/>
 						</buff>
 
 <buff id="waterBuff" duration="1" type="staminaup" name_key="Murloc Mode" stack="reset" description_key="You are as swift as a Murloc! BLRGHGHGHMLMHGH" tooltip_key="Murloc" icon="ui_game_symbol_run">
@@ -476,15 +478,7 @@
 <buff id="waterygrip" duration="4" onexpired="stunCooldown" type="speedmodifier" icon="ui_game_symbol_brokenbone" name_key="Slowed" description_key="She's got you, kill her!" tooltip_key="She's got you!">
 	<modify id="0" stat="speedmodifier" mulValue="0.1"/>
 </buff>
-	<!-- FISHING -->
-	<buff id="lure1" duration="300" name_key="lure1" smell="smallSmell" description_key="lureFish" tooltip_key="lureFish" icon="ui_game_symbol_lure1" />
-	<buff id="lure2" duration="300" name_key="lure2" smell="mediumSmell" description_key="lureFish" tooltip_key="lureFish" icon="ui_game_symbol_lure2" />
-	<buff id="lure3" duration="300" name_key="lure3" smell="largeSmell" description_key="lureFish" tooltip_key="lureFish" icon="ui_game_symbol_lure3" />
-	<buff id="lure4" duration="300" name_key="lure4" smell="mediumSmell" description_key="lureFish" tooltip_key="lureFish" icon="ui_game_symbol_lure4" />
-	<buff id="lure5" duration="300" name_key="lure5" smell="largeSmell" description_key="lureFish" tooltip_key="lureFish" icon="ui_game_symbol_lure5" />
-	<buff id="lure6" duration="480" name_key="lure6" smell="largeSmell" description_key="lureFish" tooltip_key="lureFish" icon="ui_game_symbol_lure6" />
-	<buff id="fishingWater" duration="0" name_key="fishingWater" description_key="fishingWaterDesc" icon="ui_game_symbol_fishing" />
-	<!-- FISHING -->
+
 	<!--  Weed by JaxTeller718 -->
 	<buff id="gettingHighBuff" duration="60" stack="extend" type="staminaup" icon="ui_game_symbol_run" name_key="gettingHighBuffName" description_key="gettingHighBuffDesc" tooltip_key="gettingHighBuffTooltip" onexpired="baked" causes="Joint">
 		<modify id="0" stat="stamina" amount="10" rate="1" />
@@ -514,6 +508,11 @@
 	 	<buff id="chestTrap" duration="0.5" icon="ui_game_symbol_stunned">
 		<modify id="0" stat="health" amount="-100" rate="0.4"/>
 	</buff>	
+<buff id="Dirty1" smell="smallSmell" duration="800" onexpired="Dirty2"  name_key="Messy" tooltip_key="You Are Dirty" description_key="Digging through those bodies has made you quite dirty. Use some soap soon or it will get worse." icon="ui_game_symbol_dirty" />
+
+<buff id="Dirty2" smell="mediumSmell" duration="600" onexpired="Dirty3"  name_key="Dirty" tooltip_key="You Are Getting Dirtier" description_key="Its been a while and the smell is getting worse. You need to clean off soon or you could become infected" icon="ui_game_symbol_dirty" />
+<buff id="Dirty3" smell="exLargeSmell" duration="400" onexpired="infection"  name_key="Filthy Mess" tooltip_key="You Need to Wash Up Or Else" description_key="Its gotten pretty bad. Use a washcloth and soap very soon or you will become infected" icon="ui_game_symbol_dirty" />
+
 						<!-- Disabled stupid weather -->
 						<buff id="StopTempEffects" stack="discard" duration="0" buffif="coretemp greater 0" debuffif="coretemp less -100" type="coretemp">
 							<modify id="0" stat="coretemp" setValue="70"/>
