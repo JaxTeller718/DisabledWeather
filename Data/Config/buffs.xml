@@ -49,21 +49,24 @@
 		<buff id="DrinkGrainAlcohol" duration="1" actions="increment(beers, 4, 0, 0, 1)">
 			<modify id="0" stat="stamina" amount="2" rate="1"/>
 		</buff>
+		<buff id="DrinkHardLiquor" duration="1" actions="increment(beers, 4, 0, 0, 1)">
+			<modify id="0" stat="stamina" amount="4" rate="1"/>
+		</buff>
 		<buff id="MetabolizeBeer" buffif="beers greater 0" debuffif="beers less 1" actions="increment(beers, -1, 100t, 0, 0);min(beers, 0)"/>
 		<!-- base stamina regen = 0.4 /s -->
-		<buff id="Buzzed" mutex="Hangover,Drunk,SickDrunk,AlcoholPoisoning" duration="0" buffif="beers greater 0" debuffif="beers less 1" causes="beer,grainAlcohol" 	type="staminaup" icon="ui_game_symbol_beer" name_key="beerBuzz" description_key="beerBuzzDesc" tooltip_key="beerBuzzTooltip">
-			<modify id="0" stat="stamina" amount="2" rate="1"/>
+		<buff id="Buzzed" mutex="Hangover,Drunk,SickDrunk,AlcoholPoisoning" duration="0" buffif="beers greater 0" debuffif="beers less 1" causes="beer,grainAlcohol,whiskey,moonshine,vodka,appleCider" 	type="staminaup" icon="ui_game_symbol_beer" name_key="beerBuzz" description_key="beerBuzzDesc" tooltip_key="beerBuzzTooltip">
+			<modify id="0" stat="stamina" amount="3" rate="1"/>
 		</buff>
 		<!-- QoLaFIM A16.2 - drunk & sickdrunk make you lose water -->
-		<buff id="Drunk" mutex="Hangover,SickDrunk,AlcoholPoisoning,stunned" buffif="beers greater 5" debuffif="beers less 2" actions="debuff(Buzzed)" causes="beer,grainAlcohol" 	type="staminadown" icon="ui_game_symbol_drunk" name_key="drunk" description_key="drunkDesc" tooltip_key="drunkTooltip">
-			<modify id="0" stat="stamina" amount="5" rate="1"/>
-			<modify id="1" stat="water" amount="-1" rate="30"/>
+		<buff id="Drunk" mutex="Hangover,SickDrunk,AlcoholPoisoning,stunned" buffif="beers greater 5" debuffif="beers less 2" actions="debuff(Buzzed)" causes="beer,grainAlcohol,whiskey,moonshine,vodka" 	type="staminadown" icon="ui_game_symbol_drunk" name_key="drunk" description_key="drunkDesc" tooltip_key="drunkTooltip">
+			<modify id="0" stat="stamina" amount="-5" rate="5"/>
+			<modify id="1" stat="water" amount="-2" rate="30"/>
 			<modify id="0" stat="speedmodifier" setValue="0.90"/>
 		</buff>
 		<buff id="InstantSickDrunk" mutex="SickDrunk,AlcoholPoisoning" requires="Hangover" duration="1" buffif="beers greater 0" actions="setvar(beers, 9)" 	type="staminadown" name_key="InstantSickDrunk"/>
 		<buff id="SickDrunk" mutex="AlcoholPoisoning" buffif="beers greater 8" debuffif="beers less 1" ondebuff="Hangover" actions="increment(@wellness, -0.5, 100t, 0, 0);debuff(Drunk);debuff(Hangover)" 	type="staminadown" icon="ui_game_symbol_dysentery" name_key="sickDrunk" description_key="sickDrunkDesc" tooltip_key="sickDrunkTooltip">
 			<modify id="0" stat="stamina" amount="-1" rate="1"/>
-			<modify id="1" stat="water" amount="-1" rate="15"/>
+			<modify id="1" stat="water" amount="-2" rate="15"/>
 			<modify id="0" stat="speedmodifier" setValue="0.70"/>
 		</buff>
 		<buff id="Hangover" mutex="AlcoholPoisoning" duration="1500" type="staminadown" 	icon="ui_game_symbol_food_poisoning" name_key="hangover" description_key="hangoverDesc" tooltip_key="hangoverTooltip" >
@@ -115,14 +118,14 @@
 		<buff id="steroids" duration="3000" actions="addimmunity(sickness)" icon="ui_game_symbol_pills" name_key="steroids" description_key="steroidsDesc" tooltip_key="steroidsTooltip"/>
 		<buff id="cured" duration="2000" stack="reset" icon="ui_game_symbol_pills" name_key="cured" description_key="curedDesc" tooltip_key="curedTooltip"/>
 		<buff id="smelly" duration="30" smell="largeSmell" icon="ui_game_symbol_dysentery" name_key="smelly" description_key="smellyDesc" tooltip_key="smellyTooltip"/>
-		<buff id="infection" mutex="cured,infection1,infection2,infection3,infection4" duration="4000" onexpired="infection1" type="sickness" 	icon="ui_game_symbol_infection" name_key="infection" description_key="infectionDesc" tooltip_key="infectionTooltip" cures="foodHoney,antibiotics,herbalAntibiotics"/>
-		<buff id="infection1" duration="2000" actions="debuff(infection)" onexpired="infection2" type="sickness" 	icon="ui_game_symbol_infection" name_key="infection1" description_key="infection1Desc" tooltip_key="infection1Tooltip" cures="antibiotics">
+		<buff id="infection" mutex="cured,infection1,infection2,infection3,infection4" duration="3600" onexpired="infection1" type="sickness" 	icon="ui_game_symbol_infection" name_key="infection" description_key="infectionDesc" tooltip_key="infectionTooltip" cures="foodHoney,antibiotics,herbalAntibiotics,honeyHam"/>
+		<buff id="infection1" duration="1800" actions="debuff(infection)" onexpired="infection2" type="sickness" 	icon="ui_game_symbol_infection" name_key="infection1" description_key="infection1Desc" tooltip_key="infection1Tooltip" cures="antibiotics">
 			<modify id="0" stat="stamina" amount="-0.3" rate="1"/>
 		</buff>
-		<buff id="infection2" duration="1000" actions="damage(25,2100t,0,3);increment(@wellness, -0.25, 100t, 0, 0);debuff(infection);debuff(infection1)" onexpired="infection3" type="sickness" 	icon="ui_game_symbol_infection" name_key="infection2" description_key="infection2Desc" tooltip_key="infection2Tooltip" cures="antibiotics">
+		<buff id="infection2" duration="1200" actions="damage(25,2100t,0,3);increment(@wellness, -0.25, 100t, 0, 0);debuff(infection);debuff(infection1)" onexpired="infection3" type="sickness" 	icon="ui_game_symbol_infection" name_key="infection2" description_key="infection2Desc" tooltip_key="infection2Tooltip" cures="antibiotics">
 			<modify id="0" stat="stamina" amount="-1" rate="1"/>
 		</buff>
-		<buff id="infection3" duration="500" actions="damage(25,800t,0,3);increment(@wellness, -0.25, 100t, 0, 0);debuff(infection);debuff(infection1);debuff(infection2)" onexpired="infection4" type="sickness" 	icon="ui_game_symbol_infection" name_key="infection3" description_key="infection3Desc" tooltip_key="infection3Tooltip" cures="antibiotics">
+		<buff id="infection3" duration="600" actions="damage(25,800t,0,3);increment(@wellness, -0.25, 100t, 0, 0);debuff(infection);debuff(infection1);debuff(infection2)" onexpired="infection4" type="sickness" 	icon="ui_game_symbol_infection" name_key="infection3" description_key="infection3Desc" tooltip_key="infection3Tooltip" cures="antibiotics">
 			<modify id="0" stat="stamina" amount="-2" rate="1"/>
 			<modify id="1" stat="health" amount="-1" rate="3"/>
 		</buff>
@@ -230,19 +233,24 @@
 					<modify id="0" stat="speedmodifier" mulValue="0.4"/>
 				</buff>
 				<buff id="sleepingBagTrigger" duration="1" actions="setvar(CTRbedroll, 10)" />
-				<buff id="sleepingBagEffect" duration="0" buffif="CTRbedroll greater 0" debuffif="CTRbedroll less 1" actions="increment(CTRbedroll, -3, 2, 0, 0)" 	icon="ui_game_symbol_map_bed" name_key="sleepingAwesome" description_key="sleepingAwesomeDesc" tooltip_key="sleepingAwesomeTooltip">
+				<buff id="sleepingBagEffect" duration="0" buffif="CTRbedroll greater 0" debuffif="CTRbedroll less 1" actions="increment(CTRbedroll, -3, 2, 0, 0)" 	icon="ui_game_symbol_map_bed" name_key="Restless Comfort" description_key="You are Relaxing as best as you can. Find a better bed to gain more comfort" tooltip_key="You are Relaxing as best as you can">
 					<modify id="0" stat="health" amount="1" rate="30" />
-					<modify id="0" stat="stamina" amount="1" rate="3" />
+					<modify id="0" stat="stamina" amount="1" rate="5" />
 				</buff>
 				<buff id="sleepingBedTrigger" duration="1" actions="setvar(CTRbed, 10)" />
-				<buff id="sleepingBedEffect" duration="0" buffif="CTRbed greater 0" debuffif="CTRbed less 1" actions="increment(CTRbed, -3, 2, 0, 0)" 	name_key="sleepingAwesome" description_key="sleepingAwesomeDesc" tooltip_key="sleepingAwesomeTooltip" icon="ui_game_symbol_map_bed">
-					<modify id="0" stat="health" amount="1" rate="15" />
-					<modify id="0" stat="stamina" amount="1" rate="3" />
+				<buff id="sleepingBedEffect" duration="0" buffif="CTRbed greater 0" debuffif="CTRbed less 1" actions="increment(CTRbed, -3, 2, 0, 0)" 	name_key="Moderate Comfort" description_key="You are getting decent rest in this bed. Find a better bed to maximize your comfort" tooltip_key="You are getting decent rest" icon="ui_game_symbol_map_bed">
+					<modify id="0" stat="health" amount="1" rate="20" />
+					<modify id="0" stat="stamina" amount="1" rate="4" />
 				</buff>
 				<buff id="sleepingBigBedTrigger" duration="1" actions="setvar(CTRbigbed, 10)" />
-				<buff id="sleepingBigBedEffect" duration="0" buffif="CTRbigbed greater 0" debuffif="CTRbigbed less 1" actions="increment(CTRbigbed, -3, 2, 0, 0)" 	name_key="sleepingAwesome" description_key="sleepingAwesomeDesc" tooltip_key="sleepingAwesomeTooltip" icon="ui_game_symbol_map_bed">
-					<modify id="0" stat="health" amount="1" rate="5" />
+				<buff id="sleepingBigBedEffect" duration="0" buffif="CTRbigbed greater 0" debuffif="CTRbigbed less 1" actions="increment(CTRbigbed, -3, 2, 0, 0)" 	name_key="Cozy Comfort" description_key="You are completely relaxed and getting some great rest" tooltip_key="You are completely relaxed" icon="ui_game_symbol_map_bed">
+					<modify id="0" stat="health" amount="1" rate="10" />
 					<modify id="0" stat="stamina" amount="1" rate="3" />
+				</buff>
+				<buff id="sleepingKingBedTrigger" duration="1" actions="setvar(CTRkingbed, 10)" />
+				<buff id="sleepingKingBedEffect" duration="0" buffif="CTRkingbed greater 0" debuffif="CTRkingbed less 1" actions="increment(CTRkingbed, -3, 2, 0, 0)" 	name_key="Kings Comfort" description_key="You are gaining the rest of the King of the Apocalypse" tooltip_key="You are royally relaxed" icon="ui_game_symbol_map_bed">
+					<modify id="0" stat="health" amount="1" rate="5" />
+					<modify id="0" stat="stamina" amount="1" rate="2" />
 				</buff>
 				<buff id="asphaltStaBoostTrigger" duration="1" actions="setvar(CTRroadrun, 10)" />
 				<!-- 				<buff id="asphaltStaminaEffect" duration="0" buffif="CTRroadrun greater 0" debuffif="CTRroadrun less 1" actions="increment(CTRroadrun, -1, 1, 0, 0)" ><modify id="0" stat="stamina" amount="1" rate="2"/></buff> -->
@@ -255,9 +263,7 @@
 				<buff id="critGunAK47" duration="1" castsound="Buffs/critical_blunt" >
 					<modify id="1" stat="health" amount="-150" rate="1"/>
 				</buff>
-				<buff id="radiation" type="sickness"  duration="5"  buffif="radiation greater 0" debuffif="radiation equals 0" icon="ui_game_symbol_radiation" name_key="radiation" description_key="radiationDesc" tooltip_key="radiationTooltip">
-					<modify id="0" stat="health" amount="-15" rate="1"/>
-				</buff>
+				<!-- 				<buff id="radiation" type="sickness"  duration="5"  buffif="radiation greater 0" debuffif="radiation equals 0" icon="ui_game_symbol_radiation" name_key="radiation" description_key="radiationDesc" tooltip_key="radiationTooltip"><modify id="0" stat="health" amount="-15" rate="1"/></buff> -->
 				<buff id="bloodDrawTrigger" duration="1" actions="increment(BDKbloodLoss, 50, 1, 0, 0)" />
 				<buff id="bloodDrawDecay" duration="0" buffif="BDKbloodLoss greater 0" debuffif="BDKbloodLoss less 1" actions="increment(BDKbloodLoss, -5, 50t, 0, 0)" />
 				<buff id="bloodBagDecay" duration="1" actions="increment(BDKbloodLoss, -25, 1, 0, 0)" />
@@ -409,17 +415,13 @@
 						<buff id="ManDown" duration="9000t" actions="debuff(firstAid);debuff(splint)" type="speedmodifier" icon="ui_game_symbol_brokenbone" name_key="brokenLeg" description_key="brokenLegDesc" tooltip_key="brokenLegTooltip" cures="splint">
 							<modify id="1" stat="speedmodifier" mulValue="0.32"/>
 						</buff>
-						<!-- for Firestorm Arrows -->
 						<buff id="FirestormZombie" mutex="isPlayer,cannotBreath,drowning" debuffif="+water > 1" duration="5t" stack="reset" ffcheck="true"><modify id="1" stat="health" amount="-12" rate="1"/>
 						</buff>
 						<buff id="Firestorm" mutex="cannotBreath,drowning" debuffif="+water > 1" duration="5t" stack="stack" stacklimit="100"  ffcheck="true" actions="debuff(burningSmall);attach(ParticleEffects/p_onFire, @impact);buff(FirestormZombie);buff(FragOut)" icon="ui_game_symbol_fire" name_key="burning" description_key="burningDesc" tooltip_key="burningTooltip" cures="canBoiledWater,bottledWater,goldenRodTea,redTea"></buff>
-						<!-- for the Stun Grenade -->
-						<!-- IT FUCKING WORKSSSKSKSKSKS WAAAHOOOO ! sound either . electric_arc_lp  .or.  electric_fence_impact -->
 						<buff id="ElectricstormZombie" mutex="isPlayer" duration="5t" stack="reset">
 							<modify id="1" stat="health" amount="-4.35" rate="1"/>
 						</buff>
 						<buff id="Electricstorm" duration="5t" stack="stack" stacklimit="100" actions="attach(ParticleEffects/p_electric_shock, @impact);buff(ElectricstormZombie);buff(ManDown)" castsound="electric_arc_lp" onexpired="stunCooldown" type="speedmodifier" icon="ui_game_symbol_electric_power" name_key="shockedBuffName" description_key="shockedBuffDesc" tooltip_key="shockedBuffTooltip" cures="painkillers,firstAidBandage,firstAidKit"/>
-						<!-- for Cluster Grenade -->
 						<buff id="ClusterstormZombie" mutex="isPlayer" duration="5t" stack="reset">
 							<modify id="1" stat="health" amount="-25" rate="1"/>
 						</buff>
@@ -482,14 +484,24 @@
 						<buff id="chestTrap" duration="0.5" icon="ui_game_symbol_stunned">
 							<modify id="0" stat="health" amount="-100" rate="0.4"/>
 						</buff>
-						<buff id="Dirty1" smell="smallSmell" duration="2000" onexpired="Dirty2"  mutex="infection,infection1,infection2,infection3" name_key="Messy" tooltip_key="You Are Dirty" description_key="Digging through those bodies has made you quite dirty. Use some soap soon or it will get worse." icon="ui_game_symbol_dirty" cures="wetTowel,wetTowelSoap,soap"/>
-						<buff id="Dirty2" smell="mediumSmell" duration="1000" onexpired="Dirty3"    mutex="infection,infection1,infection2,infection3" name_key="Dirty" tooltip_key="You Are Getting Dirtier" description_key="Its been a while and the smell is getting worse. You need to clean off soon or you could become infected" icon="ui_game_symbol_dirty" cures="wetTowelSoap,soap"/>
-						<buff id="Dirty3" smell="exLargeSmell" duration="500" onexpired="infection"   mutex="infection,infection1,infection2,infection3"  name_key="Filthy Mess" tooltip_key="You Need to Wash Up Or Else" description_key="Its gotten pretty bad. Use a washcloth and soap very soon or you will become infected" icon="ui_game_symbol_dirty" cures="wetTowelSoap"/>
+						<buff id="Dirty1" smell="smallSmell" duration="2400" onexpired="Dirty2"  mutex="infection,infection1,infection2,infection3" name_key="Dirty" tooltip_key="You Have Gotten Dirty" description_key="Digging through those bodies has made you quite dirty. Use some soap soon or it will get worse." icon="ui_game_symbol_dirty" cures="wetTowel,wetTowelSoap"/>
+						<buff id="Dirty2" smell="exLargeSmell" duration="900" onexpired="infection"   mutex="infection,infection1,infection2,infection3"  name_key="Filthy Mess" tooltip_key="You Need to Wash Up Or Else" description_key="Its gotten pretty bad. Use a washcloth and soap very soon or you will become infected" icon="ui_game_symbol_dirty" cures="wetTowelSoap"/>
 						<buff id="rottedApple" duration="30" stack="extend" actions="increment(@wellness, -.5, 14, 0, 0)" type="sickness" icon="ui_game_symbol_food_poisoning" name_key="Rotten Apple" description_key="You have eaten a rotten apple and have become sick" tooltip_key="Oh No A Bad Apple" causes="Apple">
 							<modify id="0" stat="water" amount="-1" rate="2"/>
 						</buff>
 						<buff id="snakeBite" duration="9000" stack="reset" actions="debuff(firstAid)" type="speedmodifier" icon="ui_game_symbol_scorpionBuff" name_key="Snake Bite" description_key="Your snake bite will slow you down. Use Anti Venom crafted from a Venom Gland to cure it" tooltip_key="You Have Been Bitten By A Snake!"   cures="antiVenom">
 							<modify id="0" stat="speedmodifier" mulValue="0.6"/>
+						</buff>
+						<!-- Radiation start -->
+						<buff id="radiation" mutex="antiRad1"  name_key="Radiation" type="sickness"  description_key="The radiation is too much and is going to kill you. Take an Anti Rad Pill to cure it." tooltip_key="You Have Radiation Poisoning" cures="antiRad1" icon="ui_game_symbol_radiation">
+							<modify id="0" stat="health" amount="-40" rate="10"/>
+						</buff>
+						<buff id="antiRad1" duration="180" actions="debuff(radiation)" stacklimit="5" stack="extend" name_key="Anti Radiation Pills" description_key="This Anti Rad Pill will allow you to walk on Radiated Soil for up to 1 minute before you will need to take another one" tooltip_key="You Are Immune to Radiation for 1 Minute" icon="ui_game_symbol_medical"/>
+						<!-- Radiation end -->
+						<buff id="energyDrink" duration="30" type="staminaup" name_key="speedBoost" stack="reset" description_key="speedBoostDesc" tooltip_key="You have wings!" icon="ui_game_symbol_run">
+							<modify id="0" stat="speedmodifier" modifyMaxValue="1.2"/>
+							<modify id="0" stat="stamina" amount="2" rate="1"/>
+							<modify id="1" stat="speedmodifier" modifyValue="1.2"/>
 						</buff>
 						<!-- Disabled stupid weather -->
 						<buff id="StopTempEffects" stack="discard" duration="0" buffif="coretemp greater 0" debuffif="coretemp less -100" type="coretemp">
